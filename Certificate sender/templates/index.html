@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Sender</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Upload Certificates & Excel</h2>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">Upload Excel File</label>
+                <input type="file" name="excel_file" class="form-control" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Upload Certificate PDFs</label>
+                <input type="file" name="certificate_files" class="form-control" multiple required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Thank You Message</label>
+                <textarea name="thank_you_message" class="form-control" rows="3" placeholder="Enter your thank you message here..."></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Send Certificates</button>
+        </form>
+    </div>
+</body>
+</html>
